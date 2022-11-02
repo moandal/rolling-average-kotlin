@@ -6,42 +6,24 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.text.InputType
 import android.view.View
+import com.moandal.rollingaverage.Rad.arraySize
+import com.moandal.rollingaverage.Rad.numberToDisplay
+import com.moandal.rollingaverage.Rad.readDates
+import com.moandal.rollingaverage.Rad.readings
+import com.moandal.rollingaverage.Rad.rollingAverage
 import java.text.DateFormat
 import java.util.*
 
 class EditActivity : AppCompatActivity() {
-    var rollingAverage = 0.0
-    var rollingNumber = 0
-    var decimalPlaces = 0
-    var numberToDisplay // number of readings in history to display
-            = 0
-    var arraySize = Utils.arraySize
-    var readings = DoubleArray(arraySize)
-    var rollingAvs = DoubleArray(arraySize)
-    var readDates = arrayOfNulls<Date>(arraySize)
     var df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault())
     var textEdRead = arrayOfNulls<EditText>(arraySize)
     var textEdDate = arrayOfNulls<EditText>(arraySize)
-    var raData: RAData? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
         setupActionBar()
-        raData = RAData(
-            rollingAverage,
-            rollingNumber,
-            decimalPlaces,
-            numberToDisplay,
-            readings,
-            rollingAvs,
-            readDates
-        )
-        raData!!.loadData(this)
-        rollingNumber = raData!!.rollingNumber
-        decimalPlaces = raData!!.decimalPlaces
-        numberToDisplay = raData!!.numberToDisplay
-        readings = raData!!.readings
-        readDates = raData!!.readDates
+        Rad.loadData(this)
         displayData()
     }
 
@@ -52,7 +34,7 @@ class EditActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Utils.saveData(this, readings, readDates)
+        Rad.saveData(this, readings, readDates)
     }
 
     override fun onResume() {
@@ -96,7 +78,7 @@ class EditActivity : AppCompatActivity() {
         var editText: EditText
         var inputValue: Double
         var inputDate: Date
-        val defaultDate = Utils.convertStringToDate("01/01/1900")
+        val defaultDate = Rad.convertStringToDate("01/01/1900")
         rollingAverage = 0.0
         var duffDates = false
         for (i in 0 until numberToDisplay) {
@@ -106,7 +88,7 @@ class EditActivity : AppCompatActivity() {
             readings[i] = inputValue
             editText = linLayDate.findViewById(i)
             textValue = editText.text.toString()
-            inputDate = Utils.validateStringToDate(textValue)
+            inputDate = Rad.validateStringToDate(textValue)
             if (inputDate == defaultDate) {
                 duffDates = true
                 editText.setText(df.format(readDates[i]))
@@ -114,23 +96,12 @@ class EditActivity : AppCompatActivity() {
                 readDates[i] = inputDate
             }
         }
-        if (duffDates) Utils.showMessage(
+        if (duffDates) Rad.showMessage(
             "Invalid input",
             "Invalid date(s) ignored",
             this
-        ) else Utils.showMessage("Input accepted", "Data updated", this)
-        val raData = RAData(
-            rollingAverage,
-            rollingNumber,
-            decimalPlaces,
-            numberToDisplay,
-            readings,
-            rollingAvs,
-            readDates
-        )
-        raData.calcAvs()
-        rollingAverage = raData.rollingAverage
-        rollingAvs = raData.rollingAvs
-        Utils.saveData(this, readings, readDates)
+        ) else Rad.showMessage("Input accepted", "Data updated", this)
+        Rad.calcAvs()
+        Rad.saveData(this, readings, readDates)
     }
 }

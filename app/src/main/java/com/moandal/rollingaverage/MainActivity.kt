@@ -10,6 +10,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import com.moandal.rollingaverage.Rad.arraySize
+import com.moandal.rollingaverage.Rad.numberToDisplay
+import com.moandal.rollingaverage.Rad.readDates
+import com.moandal.rollingaverage.Rad.readings
+import com.moandal.rollingaverage.Rad.rollingAverage
+import com.moandal.rollingaverage.Rad.rollingAvs
+import com.moandal.rollingaverage.Rad.rollingNumber
 import java.text.DateFormat
 import java.util.*
 
@@ -17,34 +24,16 @@ import java.util.*
 //Todo Keep track of more than one average
 //Todo Average blood pressure
 class MainActivity : AppCompatActivity() {
-    var rollingAverage = 0.0
-    var rollingNumber = 0 // number of readings to average over
-    var decimalPlaces = 0 // number of decimal places for rounding of rolling average
-    var numberToDisplay = 0 // number of readings in history to display
-
-    var arraySize = Utils.arraySize
-    var readings = DoubleArray(arraySize)
-    var rollingAvs = DoubleArray(arraySize)
-    var readDates = arrayOfNulls<Date>(arraySize)
-    var raData: RAData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        raData = RAData(rollingAverage, rollingNumber, decimalPlaces, numberToDisplay, readings, rollingAvs, readDates)
-        raData!!.loadData(this)
-        rollingNumber = raData!!.rollingNumber
-        decimalPlaces = raData!!.decimalPlaces
-        numberToDisplay = raData!!.numberToDisplay
-        readings = raData!!.readings
-        readDates = raData!!.readDates
+        Rad.loadData(this)
         displayData()
     }
 
     private fun displayData() {
-        raData!!.calcAvs()
-        rollingAverage = raData!!.rollingAverage
-        rollingAvs = raData!!.rollingAvs
+        Rad.calcAvs()
         val df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault())
         var hist1 = readings[0].toString()
         var hAv1 = rollingAvs[0].toString()
@@ -121,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Utils.saveData(this, readings, readDates)
+        Rad.saveData(this, readings, readDates)
     }
 
     // Called when the user clicks the Enter button
@@ -150,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             readDates[0] = Date()
         }
         displayData()
-        Utils.saveData(this, readings, readDates)
+        Rad.saveData(this, readings, readDates)
     }
 
 }

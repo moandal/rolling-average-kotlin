@@ -33,7 +33,7 @@ class SettingsActivity : AppCompatActivity() {
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 2 || `val` > 100) {
-                        Utils.showMessage(
+                        Rad.showMessage(
                             "Invalid input",
                             "Value must be between 2 and 100",
                             activity
@@ -47,7 +47,7 @@ class SettingsActivity : AppCompatActivity() {
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 1 || `val` > 100) {
-                        Utils.showMessage(
+                        Rad.showMessage(
                             "Invalid input",
                             "Value must be between 1 and 100",
                             activity
@@ -61,7 +61,7 @@ class SettingsActivity : AppCompatActivity() {
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 1 || `val` > 5) {
-                        Utils.showMessage(
+                        Rad.showMessage(
                             "Invalid input",
                             "Value must be between 1 and 5",
                             activity
