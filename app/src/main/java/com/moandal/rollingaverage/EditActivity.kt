@@ -15,7 +15,7 @@ import java.text.DateFormat
 import java.util.*
 
 class EditActivity : AppCompatActivity() {
-    var df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault())
+    private var df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault())
     var textEdRead = arrayOfNulls<EditText>(arraySize)
     var textEdDate = arrayOfNulls<EditText>(arraySize)
 
