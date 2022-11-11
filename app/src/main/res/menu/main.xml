@@ -15,4 +15,14 @@
         android:id="@+id/edit_data"
         android:title="@string/edit_data"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/load_data"
+        android:title="@string/load_data"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/save_data"
+        android:title="@string/save_data"
+        app:showAsAction="never"/>
 </menu>
