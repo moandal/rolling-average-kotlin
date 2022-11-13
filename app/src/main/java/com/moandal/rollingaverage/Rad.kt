@@ -73,7 +73,7 @@ object Rad {
         try {
             formattedDate = sdf.parse(dateString)
         } catch (e: ParseException) {
-            e.printStackTrace()
+            formattedDate = sdf.parse("01/01/1900")
         }
         return formattedDate
     }

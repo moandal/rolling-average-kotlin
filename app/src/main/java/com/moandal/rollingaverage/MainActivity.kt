@@ -184,6 +184,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun readInFile(uri: Uri) {
         val inputStream: InputStream?
+        val defaultDate = Rad.convertStringToDate("01/01/1900")
+        var duffDates = false
         try {
             inputStream = contentResolver.openInputStream(uri)
             val reader = BufferedReader(InputStreamReader(inputStream))
@@ -191,15 +193,25 @@ class MainActivity : AppCompatActivity() {
 
             for (i in 0 until arraySize) {
                 currentLine = reader.readLine()
-                var dataItems: List<String> = currentLine.split(",").map {it.trim()}
+                var dataItems: List<String> = currentLine.split(",").map { it.trim() }
 
-                readings[i] = java.lang.Double.valueOf(dataItems[0])
+                try {
+                    readings[i] = java.lang.Double.valueOf(dataItems[0])
+                } catch (f: NumberFormatException) {
+                    Rad.showMessage("Load data", "Data load failed - invalid data", this)
+                    return
+                }
+
                 readDates[i] = Rad.convertStringToDate(dataItems[1])
+                if (readDates[i] == defaultDate) {
+                    Rad.showMessage("Load data", "Data load failed - invalid data", this)
+                    return
+                }
             }
             reader.close()
             Rad.showMessage("Load data", "Data loaded", this)
         } catch (e: IOException) {
-            e.printStackTrace()
+            Rad.showMessage("Load data", "Data load failed - unable to load file", this)
         }
     }
 
