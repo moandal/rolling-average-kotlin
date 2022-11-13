@@ -30,14 +30,12 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-//Todo Option to export data to a file
 //Todo Keep track of more than one average
 //Todo Average blood pressure
 class MainActivity : AppCompatActivity() {
 
-    val createFile = 1
-    val loadFile = 2
+    private val createFile = 1
+    private val loadFile = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,7 +120,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                     addCategory(Intent.CATEGORY_OPENABLE)
                     type = "text/plain"
-//                    putExtra(Intent.EXTRA_TITLE, "rolling_average.txt")
                 }
 
                 startActivityForResult(intent, loadFile)

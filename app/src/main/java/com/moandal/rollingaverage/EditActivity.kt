@@ -37,10 +37,6 @@ class EditActivity : AppCompatActivity() {
         Rad.saveData(this, readings, readDates)
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun displayData() {
         val linLayReading = findViewById<LinearLayout>(R.id.linLayReading)
         val linLayReadingparams = LinearLayout.LayoutParams(
@@ -96,11 +92,10 @@ class EditActivity : AppCompatActivity() {
                 readDates[i] = inputDate
             }
         }
-        if (duffDates) Rad.showMessage(
-            "Invalid input",
-            "Invalid date(s) ignored",
-            this
-        ) else Rad.showMessage("Input accepted", "Data updated", this)
+        if (duffDates)
+            Rad.showMessage("Invalid input","Invalid date(s) ignored",this)
+        else
+            Rad.showMessage("Input accepted", "Data updated", this)
         Rad.calcAvs()
         Rad.saveData(this, readings, readDates)
     }

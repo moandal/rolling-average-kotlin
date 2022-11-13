@@ -23,13 +23,13 @@ class SettingsActivity : AppCompatActivity() {
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preference, rootKey)
-            val rolling_number =
+            val rollingNumber =
                 preferenceManager.findPreference<EditTextPreference>("rolling_number")
-            val number_to_display =
+            val numberToDisplay =
                 preferenceManager.findPreference<EditTextPreference>("number_to_display")
-            val decimal_places =
+            val decimalPlaces =
                 preferenceManager.findPreference<EditTextPreference>("decimal_places")
-            rolling_number!!.onPreferenceChangeListener =
+            rollingNumber!!.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 2 || `val` > 100) {
@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity() {
                         true
                     }
                 }
-            number_to_display!!.onPreferenceChangeListener =
+            numberToDisplay!!.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 1 || `val` > 100) {
@@ -57,7 +57,7 @@ class SettingsActivity : AppCompatActivity() {
                         true
                     }
                 }
-            decimal_places!!.onPreferenceChangeListener =
+            decimalPlaces!!.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 1 || `val` > 5) {

@@ -10,6 +10,7 @@ import android.provider.DocumentsContract
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.preference.PreferenceManager
+import com.moandal.rollingaverage.Rad.arraySize
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -18,7 +19,6 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.pow
-
 
 object Rad {
     const val arraySize = 100
@@ -85,11 +85,7 @@ object Rad {
         try {
             formattedDate = df.parse(dateString)
         } catch (e: ParseException) {
-            try {
-                formattedDate = df.parse("01/01/1900")
-            } catch (f: ParseException) {
-                f.printStackTrace()
-            }
+            formattedDate = df.parse("01/01/1900")
         }
         return formattedDate
     }
@@ -99,8 +95,8 @@ object Rad {
         val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sp.edit()
         for (i in 0 until arraySize) {
-            editor.putString("Weight$i", java.lang.Double.toString(readings[i]))
-            editor.putString("readDates$i", ddmmFormat.format(readDates[i]))
+            editor.putString("Weight$i", readings[i].toString())
+            editor.putString("readDates$i", ddmmFormat.format(readDates[i]!!))
         }
         editor.commit()
     }
