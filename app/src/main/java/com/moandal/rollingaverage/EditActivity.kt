@@ -16,8 +16,8 @@ import java.util.*
 
 class EditActivity : AppCompatActivity() {
     private var df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault())
-    var textEdRead = arrayOfNulls<EditText>(arraySize)
-    var textEdDate = arrayOfNulls<EditText>(arraySize)
+    private var textEdRead = arrayOfNulls<EditText>(arraySize)
+    private var textEdDate = arrayOfNulls<EditText>(arraySize)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,14 +51,14 @@ class EditActivity : AppCompatActivity() {
         for (i in 0 until numberToDisplay) {
             textEdRead[i] = EditText(this)
             textEdRead[i]!!.layoutParams = linLayReadingparams
-            textEdRead[i]!!.setText(java.lang.Double.toString(readings[i]))
+            textEdRead[i]!!.setText(readings[i].toString())
             textEdRead[i]!!.inputType =
                 InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
             textEdRead[i]!!.id = i
             linLayReading.addView(textEdRead[i])
             textEdDate[i] = EditText(this)
             textEdDate[i]!!.layoutParams = linLayDateparams
-            textEdDate[i]!!.setText(df.format(readDates[i]))
+            textEdDate[i]!!.setText(df.format(readDates[i]!!))
             textEdDate[i]!!.inputType =
                 InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE
             textEdDate[i]!!.id = i
@@ -87,7 +87,7 @@ class EditActivity : AppCompatActivity() {
             inputDate = Rad.validateStringToDate(textValue)
             if (inputDate == defaultDate) {
                 duffDates = true
-                editText.setText(df.format(readDates[i]))
+                editText.setText(df.format(readDates[i]!!))
             } else {
                 readDates[i] = inputDate
             }

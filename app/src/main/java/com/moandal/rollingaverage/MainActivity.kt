@@ -18,7 +18,6 @@ import com.moandal.rollingaverage.Rad.readings
 import com.moandal.rollingaverage.Rad.rollingAverage
 import com.moandal.rollingaverage.Rad.rollingAvs
 import com.moandal.rollingaverage.Rad.rollingNumber
-import org.w3c.dom.Text
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.IOException
@@ -171,7 +170,7 @@ class MainActivity : AppCompatActivity() {
             val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
             val writer = BufferedWriter(OutputStreamWriter(outputStream))
             for (i in 0 until Rad.arraySize) {
-                writer.write("${java.lang.Double.toString(readings[i])}, ${ddmmFormat.format(readDates[i])}")
+                writer.write("${readings[i]}, ${ddmmFormat.format(readDates[i]!!)}")
                 writer.newLine()
             }
             writer.flush()
@@ -184,8 +183,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun readInFile(uri: Uri) {
         val inputStream: InputStream?
-        val defaultDate = Rad.convertStringToDate("01/01/1900")
-        var duffDates = false
+        val errorDate = Rad.convertStringToDate("01/01/1900")
         try {
             inputStream = contentResolver.openInputStream(uri)
             val reader = BufferedReader(InputStreamReader(inputStream))
@@ -193,7 +191,7 @@ class MainActivity : AppCompatActivity() {
 
             for (i in 0 until arraySize) {
                 currentLine = reader.readLine()
-                var dataItems: List<String> = currentLine.split(",").map { it.trim() }
+                val dataItems: List<String> = currentLine.split(",").map { it.trim() }
 
                 try {
                     readings[i] = java.lang.Double.valueOf(dataItems[0])
@@ -203,7 +201,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 readDates[i] = Rad.convertStringToDate(dataItems[1])
-                if (readDates[i] == defaultDate) {
+                if (readDates[i] == errorDate) {
                     Rad.showMessage("Load data", "Data load failed - invalid data", this)
                     return
                 }
