@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
             outputStream = contentResolver.openOutputStream(uri)
             val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
             val writer = BufferedWriter(OutputStreamWriter(outputStream))
-            for (i in 0 until Rad.arraySize) {
+            for (i in 0 until arraySize) {
                 writer.write("${readings[i]}, ${ddmmFormat.format(readDates[i]!!)}")
                 writer.newLine()
             }
