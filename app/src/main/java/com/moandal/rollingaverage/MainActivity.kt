@@ -1,5 +1,6 @@
 package com.moandal.rollingaverage
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.moandal.rollingaverage.Rad.arraySize
 import com.moandal.rollingaverage.Rad.numberToDisplay
@@ -32,9 +34,6 @@ import java.util.*
 //Todo Keep track of more than one average
 //Todo Average blood pressure
 class MainActivity : AppCompatActivity() {
-
-    private val createFile = 1
-    private val loadFile = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                     type = "text/plain"
                 }
 
-                startActivityForResult(intent, loadFile)
+                getLoadResult.launch(intent)
                 return true
             }
             R.id.save_data -> {
@@ -131,39 +130,22 @@ class MainActivity : AppCompatActivity() {
                     putExtra(Intent.EXTRA_TITLE, "rolling_average.txt")
                 }
 
-                startActivityForResult(intent, createFile)
+                getSaveResult.launch(intent)
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == createFile) {
-            when (resultCode) {
-                RESULT_OK -> if (data != null
-                    && data.data != null
-                ) {
-                    writeInFile(data.data!!)
-                }
-                RESULT_CANCELED -> {}
+    private val getSaveResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data: Intent? = result.data
+            if (result.resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+                writeOutData(data.data!!)
             }
         }
-        else if (requestCode == loadFile) {
-            when (resultCode) {
-                RESULT_OK -> if (data != null
-                    && data.data != null
-                ) {
-                    readInFile(data.data!!)
-                    displayData()
-                }
-                RESULT_CANCELED -> {}
-            }
-        }
-    }
 
-    private fun writeInFile(uri: Uri) {
+    private fun writeOutData(uri: Uri) {
         val outputStream: OutputStream?
         try {
             outputStream = contentResolver.openOutputStream(uri)
@@ -177,11 +159,20 @@ class MainActivity : AppCompatActivity() {
             writer.close()
             Rad.showMessage("Save data", "Data saved", this)
         } catch (e: IOException) {
-            e.printStackTrace()
+            Rad.showMessage("Save data", "Data save failed - unable to save file", this)
         }
     }
 
-    private fun readInFile(uri: Uri) {
+    private val getLoadResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data: Intent? = result.data
+            if (result.resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+                readInData(data.data!!)
+                displayData()
+            }
+        }
+
+    private fun readInData(uri: Uri) {
         val inputStream: InputStream?
         val errorDate = Rad.convertStringToDate("01/01/1900")
         try {
