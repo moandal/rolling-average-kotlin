@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rolling Average:  "
+        android:text="Rolling Average BP:"
         android:textSize="20sp"
         android:id="@+id/textLabel1"
         android:layout_alignParentTop="true"
@@ -22,18 +22,37 @@
         android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textAverage"
+        android:id="@+id/textBPAverage"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/textLabel1"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/editWeight"
+        android:id="@+id/editBP1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textAverage"
+        android:layout_below="@+id/textLabel1"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
+        android:ems="6"
+        android:hint="Enter value"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:text="/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textSlash"
+        android:layout_alignBottom="@+id/editBP1"
+        android:layout_toEndOf="@+id/editBP1"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editBP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editBP1"
+        android:layout_toEndOf="@+id/textSlash"
         android:ems="6"
         android:hint="Enter value"
         android:inputType="numberDecimal" />
@@ -42,17 +61,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter"
-        android:id="@+id/button"
-        android:onClick="showAverage"
-        android:layout_alignBottom="@+id/editWeight"
-        android:layout_toEndOf="@+id/editWeight"
+        android:id="@+id/buttonBP"
+        android:onClick="BPshowAverage"
+        android:layout_alignBottom="@+id/editBP1"
+        android:layout_toEndOf="@+id/editBP2"
         android:layout_marginStart="20dp"/>
 
     <ScrollView
-        android:id="@+id/scrollView1"
+        android:id="@+id/BPscrollView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editWeight"
+        android:layout_below="@+id/editBP1"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp">
 
@@ -89,8 +108,8 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView2"
-        android:layout_below="@+id/scrollView1"
+        android:id="@+id/BPscrollView2"
+        android:layout_below="@+id/BPscrollView1"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp" >
 
@@ -102,17 +121,17 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textHist1" />
+                android:id="@+id/textBPHist" />
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textHAv1" />
+                android:id="@+id/textBPAvg" />
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textHDt1" />
+                android:id="@+id/textBPDate" />
 
         </LinearLayout>
 

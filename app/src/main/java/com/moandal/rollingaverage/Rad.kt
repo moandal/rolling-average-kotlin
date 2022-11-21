@@ -81,7 +81,7 @@ object Rad {
         return formattedDate
     }
 
-    fun saveData(context: Context, readings: DoubleArray, readDates: Array<Date?>) {
+    fun saveData(context: Context) {
         val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
         val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sp.edit()

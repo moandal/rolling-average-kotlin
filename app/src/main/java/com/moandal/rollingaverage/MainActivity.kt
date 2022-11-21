@@ -206,7 +206,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Rad.saveData(this, readings, readDates)
+        Rad.saveData(this)
     }
 
     // Called when the user clicks the Enter button
@@ -235,7 +235,7 @@ class MainActivity : AppCompatActivity() {
             readDates[0] = Date()
         }
         displayData()
-        Rad.saveData(this, readings, readDates)
+        Rad.saveData(this)
     }
 
 }

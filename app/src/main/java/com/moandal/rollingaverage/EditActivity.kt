@@ -34,7 +34,7 @@ class EditActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Rad.saveData(this, readings, readDates)
+        Rad.saveData(this)
     }
 
     private fun displayData() {
@@ -97,6 +97,6 @@ class EditActivity : AppCompatActivity() {
         else
             Rad.showMessage("Input accepted", "Data updated", this)
         Rad.calcAvs()
-        Rad.saveData(this, readings, readDates)
+        Rad.saveData(this)
     }
 }
