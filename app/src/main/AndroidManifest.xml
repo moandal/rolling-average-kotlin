@@ -32,6 +32,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moandal.rollingaverage.MainActivity" />
         </activity>
+        <activity
+            android:name=".BPActivity"
+            android:label="@string/title_activity_BP"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moandal.rollingaverage.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EditBPActivity"
+            android:label="@string/title_activity_BPedit"
+            android:parentActivityName=".BPActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moandal.rollingaverage.BPActivity" />
+        </activity>
     </application>
 
 </manifest>

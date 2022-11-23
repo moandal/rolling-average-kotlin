@@ -20,6 +20,7 @@ object Rad {
     var readings = DoubleArray(arraySize)
     var rollingAvs = DoubleArray(arraySize)
     var readDates = arrayOfNulls<Date>(arraySize)
+    var dataType = 0 // 0 = regular data, 1 = blood pressure data
 
     fun calcAvs() {
         val multiplier = 10.0.pow(decimalPlaces.toDouble())

@@ -36,11 +36,11 @@ class BPActivity : AppCompatActivity() {
         for (i in 1 until BPRad.BPnumberToDisplay) {
             BPHist += """
                 
-                ${BPRad.BPreadings1[i]} + "/" + ${BPRad.BPreadings2[i]}
+                ${BPRad.BPreadings1[i]}/${BPRad.BPreadings2[i]}
                 """.trimIndent()
             BPAvg += """
                 
-                ${BPRad.BProllingAvs1[i]} + "/" + ${BPRad.BProllingAvs2[i]}
+                ${BPRad.BProllingAvs1[i]}/${BPRad.BProllingAvs2[i]}
                 """.trimIndent()
             BPDate += """
                 

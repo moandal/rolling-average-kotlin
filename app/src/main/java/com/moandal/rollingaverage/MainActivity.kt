@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.moandal.rollingaverage.Rad.arraySize
+import com.moandal.rollingaverage.Rad.dataType
 import com.moandal.rollingaverage.Rad.numberToDisplay
 import com.moandal.rollingaverage.Rad.readDates
 import com.moandal.rollingaverage.Rad.readings
@@ -131,6 +132,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 getSaveResult.launch(intent)
+                return true
+            }
+            R.id.switch_data -> {
+                val intentBPActivity = Intent(this, BPActivity::class.java)
+                dataType = 1
+                startActivity(intentBPActivity)
                 return true
             }
         }

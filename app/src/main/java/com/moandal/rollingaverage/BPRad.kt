@@ -37,7 +37,7 @@ object BPRad {
             BProllingAverage2 = 0.0
             for (j in i until i + BProllingNumber) {
                 BProllingAverage1 = BProllingAverage1 + BPreadings1[j]
-                BProllingAverage2 = BProllingAverage2 + BPreadings1[j]
+                BProllingAverage2 = BProllingAverage2 + BPreadings2[j]
             }
             BProllingAverage1 = (BProllingAverage1 / BProllingNumber).roundToInt().toDouble()
             BProllingAverage2 = (BProllingAverage2 / BProllingNumber).roundToInt().toDouble()

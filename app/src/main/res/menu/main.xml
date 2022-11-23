@@ -25,4 +25,9 @@
         android:id="@+id/save_data"
         android:title="@string/save_data"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/switch_data"
+        android:title="@string/switch_data"
+        app:showAsAction="never"/>
 </menu>
