@@ -19,10 +19,10 @@
     <string name="pref_title_decimal_places">Number of decimal places (1-5)</string>
     <string name="pref_default_decimal_places">2</string>
 
-    <string name="pref_title_BProlling_number">Number of values for average (2-100)</string>
-    <string name="pref_default_BProlling_number">7</string>
+    <string name="pref_title_bprolling_number">Number of values for average (2-100)</string>
+    <string name="pref_default_bprolling_number">7</string>
 
-    <string name="pref_title_BPnumber_to_display">Number of values to display (1-100)</string>
-    <string name="pref_default_BPnumber_to_display">7</string>
+    <string name="pref_title_bpnumber_to_display">Number of values to display (1-100)</string>
+    <string name="pref_default_bpnumber_to_display">7</string>
 
 </resources>

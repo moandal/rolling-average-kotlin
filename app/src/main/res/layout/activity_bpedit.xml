@@ -7,14 +7,14 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.moandal.rollingaverage.EditActivity">
+    tools:context="com.moandal.rollingaverage.EditBPActivity">
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:id="@+id/BPscrollView3">
+        android:id="@+id/bpscrollview3">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -25,13 +25,13 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/linLayReading" >
+                android:id="@+id/linLaybpreading1" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reading"
-                    android:id="@+id/textEdReadTitle"
+                    android:text="Reading1"
+                    android:id="@+id/textbp1title"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -40,14 +40,44 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/linLayDate" >
+                android:id="@+id/linLayslash" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:id="@+id/textslash"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/linLaybpreading2" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reading2"
+                    android:id="@+id/textbp2title"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:id="@+id/linLaybpdate" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date"
-                    android:id="@+id/textEdHDtTitle"
+                    android:id="@+id/textbpdatetitle"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -60,9 +90,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update"
-        android:id="@+id/buttonUpdate"
-        android:onClick="updateReadings"
-        android:layout_alignParentRight="true"
+        android:id="@+id/buttonBPUpdate"
+        android:onClick="updateBPReadings"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true" />
 
 </RelativeLayout>
