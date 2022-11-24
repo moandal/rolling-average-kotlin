@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:text="Enter"
         android:id="@+id/buttonBP"
-        android:onClick="BPshowAverage"
+        android:onClick="bpShowAverage"
         android:layout_alignBottom="@+id/editBP1"
         android:layout_toEndOf="@+id/editBP2"
         android:layout_marginStart="20dp"/>

@@ -7,12 +7,12 @@ import android.widget.LinearLayout
 import android.text.InputType
 import android.view.View
 import android.widget.TextView
-import com.moandal.rollingaverage.BPRad.BPnumberToDisplay
-import com.moandal.rollingaverage.BPRad.BPreadDates
-import com.moandal.rollingaverage.BPRad.BPreadings1
-import com.moandal.rollingaverage.BPRad.BPreadings2
-import com.moandal.rollingaverage.BPRad.BProllingAverage1
-import com.moandal.rollingaverage.BPRad.BProllingAverage2
+import com.moandal.rollingaverage.BPRad.bpNumberToDisplay
+import com.moandal.rollingaverage.BPRad.bpReadDates
+import com.moandal.rollingaverage.BPRad.bpReadings1
+import com.moandal.rollingaverage.BPRad.bpReadings2
+import com.moandal.rollingaverage.BPRad.bpRollingAverage1
+import com.moandal.rollingaverage.BPRad.bpRollingAverage2
 import com.moandal.rollingaverage.Rad.arraySize
 import java.text.DateFormat
 import java.util.*
@@ -28,7 +28,7 @@ class EditBPActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bpedit)
         setupActionBar()
-        BPRad.BPloadData(this)
+        BPRad.bpLoadData(this)
         displayBPData()
     }
 
@@ -39,7 +39,7 @@ class EditBPActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        BPRad.BPsaveData(this)
+        BPRad.bpSaveData(this)
     }
 
     private fun displayBPData() {
@@ -66,13 +66,13 @@ class EditBPActivity : AppCompatActivity() {
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        for (i in 0 until BPnumberToDisplay) {
+        for (i in 0 until bpNumberToDisplay) {
             textEdBP1[i] = EditText(this)
             textSlash[i] = TextView(this)
             textEdBP2[i] = EditText(this)
 
             textEdBP1[i]!!.layoutParams = linLayBPReading1params
-            textEdBP1[i]!!.setText(BPreadings1[i].toString())
+            textEdBP1[i]!!.setText(bpReadings1[i].toString())
             textEdBP1[i]!!.inputType =
                 InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
             textEdBP1[i]!!.id = i
@@ -84,7 +84,7 @@ class EditBPActivity : AppCompatActivity() {
             linLaySlash.addView(textSlash[i])
 
             textEdBP2[i]!!.layoutParams = linLayBPReading2params
-            textEdBP2[i]!!.setText(BPreadings2[i].toString())
+            textEdBP2[i]!!.setText(bpReadings2[i].toString())
             textEdBP2[i]!!.inputType =
                 InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
             textEdBP2[i]!!.id = i
@@ -92,7 +92,7 @@ class EditBPActivity : AppCompatActivity() {
 
             textEdBPDate[i] = EditText(this)
             textEdBPDate[i]!!.layoutParams = linLayDateparams
-            textEdBPDate[i]!!.setText(df.format(BPreadDates[i]!!))
+            textEdBPDate[i]!!.setText(df.format(bpReadDates[i]!!))
             textEdBPDate[i]!!.inputType =
                 InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE
             textEdBPDate[i]!!.id = i
@@ -110,35 +110,35 @@ class EditBPActivity : AppCompatActivity() {
         var inputValue: Double
         var inputDate: Date
         val defaultDate = Rad.convertStringToDate("01/01/1900")
-        BProllingAverage1 = 0.0
-        BProllingAverage2 = 0.0
+        bpRollingAverage1 = 0.0
+        bpRollingAverage2 = 0.0
         var duffDates = false
-        for (i in 0 until BPnumberToDisplay) {
+        for (i in 0 until bpNumberToDisplay) {
             editText = linLayBPReading1.findViewById(i)
             textValue = editText.text.toString()
             inputValue = java.lang.Double.valueOf(textValue)
-            BPreadings1[i] = inputValue
+            bpReadings1[i] = inputValue
 
             editText = linLayBPReading2.findViewById(i)
             textValue = editText.text.toString()
             inputValue = java.lang.Double.valueOf(textValue)
-            BPreadings2[i] = inputValue
+            bpReadings2[i] = inputValue
 
             editText = linLayBPDate.findViewById(i)
             textValue = editText.text.toString()
             inputDate = Rad.validateStringToDate(textValue)
             if (inputDate == defaultDate) {
                 duffDates = true
-                editText.setText(df.format(BPreadDates[i]!!))
+                editText.setText(df.format(bpReadDates[i]!!))
             } else {
-                BPreadDates[i] = inputDate
+                bpReadDates[i] = inputDate
             }
         }
         if (duffDates)
             Rad.showMessage("Invalid input","Invalid date(s) ignored",this)
         else
             Rad.showMessage("Input accepted", "Data updated", this)
-        BPRad.BPcalcAvs()
-        BPRad.BPsaveData(this)
+        BPRad.bpCalcAvs()
+        BPRad.bpSaveData(this)
     }
 }
