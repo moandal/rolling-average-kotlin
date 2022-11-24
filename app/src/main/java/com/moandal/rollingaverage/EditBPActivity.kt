@@ -107,7 +107,7 @@ class EditBPActivity : AppCompatActivity() {
         val linLayBPDate = findViewById<LinearLayout>(R.id.linLaybpdate)
         var textValue: String
         var editText: EditText
-        var inputValue: Double
+        var inputValue: Int
         var inputDate: Date
         val defaultDate = Rad.convertStringToDate("01/01/1900")
         bpRollingAverage1 = 0.0
@@ -116,12 +116,12 @@ class EditBPActivity : AppCompatActivity() {
         for (i in 0 until bpNumberToDisplay) {
             editText = linLayBPReading1.findViewById(i)
             textValue = editText.text.toString()
-            inputValue = java.lang.Double.valueOf(textValue)
+            inputValue = textValue.toInt()
             bpReadings1[i] = inputValue
 
             editText = linLayBPReading2.findViewById(i)
             textValue = editText.text.toString()
-            inputValue = java.lang.Double.valueOf(textValue)
+            inputValue = textValue.toInt()
             bpReadings2[i] = inputValue
 
             editText = linLayBPDate.findViewById(i)

@@ -13,8 +13,8 @@ object BPRad {
     var bpRollingAverage2 = 0.0
     var bpRollingNumber = 0 // number of readings to average over
     var bpNumberToDisplay = 0 // number of readings in history to display
-    var bpReadings1 = DoubleArray(arraySize)
-    var bpReadings2 = DoubleArray(arraySize)
+    var bpReadings1 = IntArray(arraySize)
+    var bpReadings2 = IntArray(arraySize)
     var bpRollingAvs1 = DoubleArray(arraySize)
     var bpRollingAvs2 = DoubleArray(arraySize)
     var bpReadDates = arrayOfNulls<Date>(arraySize)
@@ -41,8 +41,8 @@ object BPRad {
         bpNumberToDisplay = preferences.getString("BPnumber_to_display", "7")!!.toInt()
         val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         for (i in 0 until arraySize) {
-            bpReadings1[i] = java.lang.Double.valueOf(sp.getString("BP1$i", "0")!!)
-            bpReadings2[i] = java.lang.Double.valueOf(sp.getString("BP2$i", "0")!!)
+            bpReadings1[i] = Integer.valueOf(sp.getString("BP1$i", "0")!!)
+            bpReadings2[i] = Integer.valueOf(sp.getString("BP2$i", "0")!!)
             bpReadDates[i] = convertStringToDate(sp.getString("BPDates$i", "0"))
         }
     }

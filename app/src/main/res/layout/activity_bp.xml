@@ -36,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:ems="6"
         android:hint="Enter value"
-        android:inputType="numberDecimal" />
+        android:inputType="number" />
 
     <TextView
         android:text="/"
@@ -55,7 +55,7 @@
         android:layout_toEndOf="@+id/textSlash"
         android:ems="6"
         android:hint="Enter value"
-        android:inputType="numberDecimal" />
+        android:inputType="number" />
 
     <Button
         android:layout_width="wrap_content"
