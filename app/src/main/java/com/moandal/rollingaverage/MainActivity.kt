@@ -37,10 +37,16 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Rad.loadData(this)
-        displayData()
+        if (dataType == "Blood Pressure") {
+            val intentBPActivity = Intent(this, BPActivity::class.java)
+            startActivity(intentBPActivity)
+        }
+        else {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_main)
+            Rad.loadData(this)
+            displayData()
+        }
     }
 
     private fun displayData() {
@@ -136,7 +142,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.switch_data -> {
                 val intentBPActivity = Intent(this, BPActivity::class.java)
-                dataType = 1
                 startActivity(intentBPActivity)
                 return true
             }

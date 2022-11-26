@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_bp_erase"
+        android:title="Erase All Blood Pressure Data"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_bp_settings"
+        android:title="Blood Pressure Settings"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_bp_edit_data"
+        android:title="Edit Blood Pressure Data"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_bp_load_data"
+        android:title="Load Blood Pressure Data"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_bp_save_data"
+        android:title="Save Blood Pressure Data"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_bp_switch_data"
+        android:title="Switch To Regular Data"
+        app:showAsAction="never"/>
+
+</menu>

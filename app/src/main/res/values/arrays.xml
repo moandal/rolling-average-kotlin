@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="pref_labels_data_type">
+        <item>@string/pref_label_data_type_regular</item>
+        <item>@string/pref_label_data_type_blood_pressure</item>
+    </array>
+
+    <array name="pref_values_data_type">
+        <item>@string/pref_value_data_type_regular</item>
+        <item>@string/pref_value_data_type_blood_pressure</item>
+    </array>
+
+</resources>

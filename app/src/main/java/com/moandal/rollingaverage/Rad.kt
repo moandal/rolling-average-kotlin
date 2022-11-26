@@ -20,7 +20,7 @@ object Rad {
     var readings = DoubleArray(arraySize)
     var rollingAvs = DoubleArray(arraySize)
     var readDates = arrayOfNulls<Date>(arraySize)
-    var dataType = 0 // 0 = regular data, 1 = blood pressure data
+    var dataType = "Regular" // "Regular" or "Blood Pressure"
 
     fun calcAvs() {
         val multiplier = 10.0.pow(decimalPlaces.toDouble())
@@ -41,11 +41,23 @@ object Rad {
         rollingNumber = preferences.getString("rolling_number", "7")!!.toInt()
         decimalPlaces = preferences.getString("decimal_places", "2")!!.toInt()
         numberToDisplay = preferences.getString("number_to_display", "7")!!.toInt()
+        dataType = preferences.getString("data_type", "Regular")!!
         val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         for (i in 0 until arraySize) {
             readings[i] = java.lang.Double.valueOf(sp.getString("Weight$i", "0")!!)
             readDates[i] = convertStringToDate(sp.getString("readDates$i", "0"))
         }
+    }
+
+    fun saveData(context: Context) {
+        val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
+        val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        for (i in 0 until arraySize) {
+            editor.putString("Weight$i", readings[i].toString())
+            editor.putString("readDates$i", ddmmFormat.format(readDates[i]!!))
+        }
+        editor.apply()
     }
 
     fun showMessage(title: String?, message: String?, activity: Activity?) {
@@ -80,17 +92,6 @@ object Rad {
             formattedDate = df.parse("01/01/1900")!!
         }
         return formattedDate
-    }
-
-    fun saveData(context: Context) {
-        val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
-        val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val editor = sp.edit()
-        for (i in 0 until arraySize) {
-            editor.putString("Weight$i", readings[i].toString())
-            editor.putString("readDates$i", ddmmFormat.format(readDates[i]!!))
-        }
-        editor.apply()
     }
 
 }

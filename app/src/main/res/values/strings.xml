@@ -13,19 +13,28 @@
 
     <!-- Strings related to Settings -->
 
-    <string name="pref_title_rolling_number">Number of values for average (2-100)</string>
+    <string name="pref_title_rolling_number">Number of values for average (2–100)</string>
     <string name="pref_default_rolling_number">7</string>
 
-    <string name="pref_title_number_to_display">Number of values to display (1-100)</string>
+    <string name="pref_title_number_to_display">Number of values to display (1–100)</string>
     <string name="pref_default_number_to_display">7</string>
 
-    <string name="pref_title_decimal_places">Number of decimal places (1-5)</string>
+    <string name="pref_title_decimal_places">Number of decimal places (1–5)</string>
     <string name="pref_default_decimal_places">2</string>
 
-    <string name="pref_title_bprolling_number">Number of values for average (2-100)</string>
+    <string name="pref_title_bprolling_number">Number of values for average (2–100)</string>
     <string name="pref_default_bprolling_number">7</string>
 
-    <string name="pref_title_bpnumber_to_display">Number of values to display (1-100)</string>
+    <string name="pref_title_bpnumber_to_display">Number of values to display (1–100)</string>
     <string name="pref_default_bpnumber_to_display">7</string>
+
+    <string name="pref_title_data_type">Data type</string>
+    <string name="pref_default_data_type">Regular</string>
+
+    <string name="pref_label_data_type_regular">Regular</string>
+    <string name="pref_label_data_type_blood_pressure">Blood Pressure</string>
+
+    <string name="pref_value_data_type_regular">Regular</string>
+    <string name="pref_value_data_type_blood_pressure">Blood Pressure</string>
 
 </resources>

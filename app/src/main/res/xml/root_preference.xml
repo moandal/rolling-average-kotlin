@@ -23,11 +23,12 @@
         app:title="@string/pref_title_decimal_places"
         app:useSimpleSummaryProvider="true" />
 
-    <EditTextPreference
-        app:defaultValue="@string/pref_default_decimal_places"
-        android:inputType="number"
-        app:key="decimal_places"
-        app:title="@string/pref_title_decimal_places"
+    <ListPreference
+        app:defaultValue="@string/pref_value_data_type_regular"
+        android:entries="@array/pref_labels_data_type"
+        android:entryValues="@array/pref_values_data_type"
+        app:key="data_type"
+        app:title="@string/pref_title_data_type"
         app:useSimpleSummaryProvider="true" />
 
 </PreferenceScreen>

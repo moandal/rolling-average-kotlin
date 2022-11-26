@@ -1,6 +1,11 @@
 package com.moandal.rollingaverage
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -22,6 +27,93 @@ class BPActivity : AppCompatActivity() {
         super.onPause()
         BPRad.bpSaveData(this)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.bpmenu, menu)
+        return true
+    }
+
+    //Take appropriate action depending on which Menu item is chosen
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_bp_erase -> {
+                val dialogClickListener = DialogInterface.OnClickListener { dialog, which ->
+                    when (which) {
+                        DialogInterface.BUTTON_POSITIVE -> {
+                            BPRad.bpRollingAverage1 = 0.0
+                            BPRad.bpRollingAverage2 = 0.0
+                            Arrays.fill(BPRad.bpReadings1, 0)
+                            Arrays.fill(BPRad.bpReadings2, 0)
+                            Arrays.fill(BPRad.bpRollingAvs1, 0.0)
+                            Arrays.fill(BPRad.bpRollingAvs2, 0.0)
+                            Arrays.fill(BPRad.bpReadDates, Date())
+                            bpDisplayData()
+                        }
+                        DialogInterface.BUTTON_NEGATIVE -> {}
+                    }
+                }
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("Are you sure?")
+                    .setPositiveButton("Yes", dialogClickListener)
+                    .setNegativeButton("No", dialogClickListener).show()
+                return true
+            }
+            R.id.menu_bp_settings -> {
+                //val intentSettings = Intent(this, BPSettingsActivity::class.java)
+                //startActivity(intentSettings)
+                Rad.showMessage(
+                    "Not yet implemented",
+                    "Not yet implemented",
+                    this
+                )
+
+                return true
+            }
+            R.id.menu_bp_edit_data -> {
+                val intentEditBP = Intent(this, EditBPActivity::class.java)
+                startActivity(intentEditBP)
+                return true
+            }
+            R.id.menu_bp_load_data -> {
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                    addCategory(Intent.CATEGORY_OPENABLE)
+                    type = "text/plain"
+                }
+
+                //getLoadBPResult.launch(intent)
+                Rad.showMessage(
+                    "Not yet implemented",
+                    "Not yet implemented",
+                    this
+                )
+
+                return true
+            }
+            R.id.menu_bp_save_data -> {
+                val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
+                    addCategory(Intent.CATEGORY_OPENABLE)
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TITLE, "rolling_average.txt")
+                }
+
+                //getSaveBPResult.launch(intent)
+                Rad.showMessage(
+                    "Not yet implemented",
+                    "Not yet implemented",
+                    this
+                )
+
+                return true
+            }
+            R.id.menu_bp_switch_data -> {
+                val intentMainActivity = Intent(this, MainActivity::class.java)
+                startActivity(intentMainActivity)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun bpDisplayData() {
         BPRad.bpCalcAvs()
