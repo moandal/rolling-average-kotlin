@@ -30,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reading1"
+                    android:text="Systolic"
                     android:id="@+id/textbp1title"
                     android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reading2"
+                    android:text="Diastolic"
                     android:id="@+id/textbp2title"
                     android:textStyle="bold" />
 

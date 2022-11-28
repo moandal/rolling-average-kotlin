@@ -52,8 +52,7 @@ class EditBPActivity : AppCompatActivity() {
         val linLaySlash = findViewById<LinearLayout>(R.id.linLayslash)
         val linLaySlashparams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
+            LinearLayout.LayoutParams.WRAP_CONTENT)
 
         val linLayBPReading2 = findViewById<LinearLayout>(R.id.linLaybpreading2)
         val linLayBPReading2params = LinearLayout.LayoutParams(
@@ -68,29 +67,30 @@ class EditBPActivity : AppCompatActivity() {
         )
         for (i in 0 until bpNumberToDisplay) {
             textEdBP1[i] = EditText(this)
-            textSlash[i] = TextView(this)
+            textSlash[i] = EditText(this)
             textEdBP2[i] = EditText(this)
+            textEdBPDate[i] = EditText(this)
 
             textEdBP1[i]!!.layoutParams = linLayBPReading1params
             textEdBP1[i]!!.setText(bpReadings1[i].toString())
-            textEdBP1[i]!!.inputType =
-                InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+            textEdBP1[i]!!.inputType = InputType.TYPE_CLASS_NUMBER
             textEdBP1[i]!!.id = i
             linLayBPReading1.addView(textEdBP1[i])
 
             textSlash[i]!!.layoutParams = linLaySlashparams
-            textSlash[i]!!.setText("/")
+            textSlash[i]!!.text = "/"
+            textSlash[i]!!.inputType = InputType.TYPE_NULL
+            textSlash[i]!!.isEnabled = false
             textSlash[i]!!.id = i
             linLaySlash.addView(textSlash[i])
 
             textEdBP2[i]!!.layoutParams = linLayBPReading2params
             textEdBP2[i]!!.setText(bpReadings2[i].toString())
             textEdBP2[i]!!.inputType =
-                InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+                InputType.TYPE_CLASS_NUMBER
             textEdBP2[i]!!.id = i
             linLayBPReading2.addView(textEdBP2[i])
 
-            textEdBPDate[i] = EditText(this)
             textEdBPDate[i]!!.layoutParams = linLayDateparams
             textEdBPDate[i]!!.setText(df.format(bpReadDates[i]!!))
             textEdBPDate[i]!!.inputType =
