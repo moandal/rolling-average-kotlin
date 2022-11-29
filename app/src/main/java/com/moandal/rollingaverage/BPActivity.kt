@@ -1,16 +1,21 @@
 package com.moandal.rollingaverage
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import java.io.*
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -80,12 +85,7 @@ class BPActivity : AppCompatActivity() {
                     type = "text/plain"
                 }
 
-                //getLoadBPResult.launch(intent)
-                Rad.showMessage(
-                    "Not yet implemented",
-                    "Not yet implemented",
-                    this
-                )
+                getLoadBPResult.launch(intent)
 
                 return true
             }
@@ -93,15 +93,10 @@ class BPActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                     addCategory(Intent.CATEGORY_OPENABLE)
                     type = "text/plain"
-                    putExtra(Intent.EXTRA_TITLE, "rolling_average.txt")
+                    putExtra(Intent.EXTRA_TITLE, "rolling_average_bp.txt")
                 }
 
-                //getSaveBPResult.launch(intent)
-                Rad.showMessage(
-                    "Not yet implemented",
-                    "Not yet implemented",
-                    this
-                )
+                getSaveBPResult.launch(intent)
 
                 return true
             }
@@ -187,4 +182,79 @@ class BPActivity : AppCompatActivity() {
         bpDisplayData()
         BPRad.bpSaveData(this)
     }
+
+    private val getLoadBPResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data: Intent? = result.data
+            if (result.resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+                bpReadInData(data.data!!)
+                bpDisplayData()
+            }
+        }
+
+    private fun bpReadInData(uri: Uri) {
+        val inputStream: InputStream?
+        val errorDate = Rad.convertStringToDate("01/01/1900")
+        try {
+            inputStream = contentResolver.openInputStream(uri)
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            var currentLine: String
+
+            for (i in 0 until Rad.arraySize) {
+                currentLine = reader.readLine()
+                val dataItems: List<String> = currentLine.split(",").map { it.trim() }
+
+                try {
+                    BPRad.bpReadings1[i] = dataItems[0].toInt()
+                } catch (f: NumberFormatException) {
+                    Rad.showMessage("Load data", "Data load failed - invalid data", this)
+                    return
+                }
+
+                try {
+                    BPRad.bpReadings2[i] = dataItems[1].toInt()
+                } catch (f: NumberFormatException) {
+                    Rad.showMessage("Load data", "Data load failed - invalid data", this)
+                    return
+                }
+
+                BPRad.bpReadDates[i] = Rad.convertStringToDate(dataItems[2])
+                if (BPRad.bpReadDates[i] == errorDate) {
+                    Rad.showMessage("Load data", "Data load failed - invalid data", this)
+                    return
+                }
+            }
+            reader.close()
+            Rad.showMessage("Load data", "Data loaded", this)
+        } catch (e: IOException) {
+            Rad.showMessage("Load data", "Data load failed - unable to load file", this)
+        }
+    }
+
+    private val getSaveBPResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data: Intent? = result.data
+            if (result.resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+                bpWriteOutData(data.data!!)
+            }
+        }
+
+    private fun bpWriteOutData(uri: Uri) {
+        val outputStream: OutputStream?
+        try {
+            outputStream = contentResolver.openOutputStream(uri)
+            val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
+            val writer = BufferedWriter(OutputStreamWriter(outputStream))
+            for (i in 0 until Rad.arraySize) {
+                writer.write("${BPRad.bpReadings1[i]}, ${BPRad.bpReadings2[i]}, ${ddmmFormat.format(BPRad.bpReadDates[i]!!)}")
+                writer.newLine()
+            }
+            writer.flush()
+            writer.close()
+            Rad.showMessage("Save data", "Data saved", this)
+        } catch (e: IOException) {
+            Rad.showMessage("Save data", "Data save failed - unable to save file", this)
+        }
+    }
+
 }

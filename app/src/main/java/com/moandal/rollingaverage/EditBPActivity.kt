@@ -86,8 +86,7 @@ class EditBPActivity : AppCompatActivity() {
 
             textEdBP2[i]!!.layoutParams = linLayBPReading2params
             textEdBP2[i]!!.setText(bpReadings2[i].toString())
-            textEdBP2[i]!!.inputType =
-                InputType.TYPE_CLASS_NUMBER
+            textEdBP2[i]!!.inputType = InputType.TYPE_CLASS_NUMBER
             textEdBP2[i]!!.id = i
             linLayBPReading2.addView(textEdBP2[i])
 
