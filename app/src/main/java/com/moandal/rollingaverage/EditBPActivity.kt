@@ -109,8 +109,8 @@ class EditBPActivity : AppCompatActivity() {
         var inputValue: Int
         var inputDate: Date
         val defaultDate = Rad.convertStringToDate("01/01/1900")
-        bpRollingAverage1 = 0.0
-        bpRollingAverage2 = 0.0
+        bpRollingAverage1 = 0
+        bpRollingAverage2 = 0
         var duffDates = false
         for (i in 0 until bpNumberToDisplay) {
             editText = linLayBPReading1.findViewById(i)

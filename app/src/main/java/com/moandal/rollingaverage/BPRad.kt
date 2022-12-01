@@ -9,27 +9,27 @@ import java.util.*
 import kotlin.math.roundToInt
 
 object BPRad {
-    var bpRollingAverage1 = 0.0
-    var bpRollingAverage2 = 0.0
+    var bpRollingAverage1 = 0
+    var bpRollingAverage2 = 0
     var bpRollingNumber = 0 // number of readings to average over
     var bpNumberToDisplay = 0 // number of readings in history to display
     var bpReadings1 = IntArray(arraySize)
     var bpReadings2 = IntArray(arraySize)
-    var bpRollingAvs1 = DoubleArray(arraySize)
-    var bpRollingAvs2 = DoubleArray(arraySize)
+    var bpRollingAvs1 = IntArray(arraySize)
+    var bpRollingAvs2 = IntArray(arraySize)
     var bpReadDates = arrayOfNulls<Date>(arraySize)
 
     fun bpCalcAvs() {
         val startIndex = arraySize - bpRollingNumber
         for (i in startIndex downTo 0) {
-            bpRollingAverage1 = 0.0
-            bpRollingAverage2 = 0.0
+            bpRollingAverage1 = 0
+            bpRollingAverage2 = 0
             for (j in i until i + bpRollingNumber) {
                 bpRollingAverage1 = bpRollingAverage1 + bpReadings1[j]
                 bpRollingAverage2 = bpRollingAverage2 + bpReadings2[j]
             }
-            bpRollingAverage1 = (bpRollingAverage1 / bpRollingNumber).roundToInt().toDouble()
-            bpRollingAverage2 = (bpRollingAverage2 / bpRollingNumber).roundToInt().toDouble()
+            bpRollingAverage1 = (bpRollingAverage1 / bpRollingNumber)
+            bpRollingAverage2 = (bpRollingAverage2 / bpRollingNumber)
             bpRollingAvs1[i] = bpRollingAverage1
             bpRollingAvs2[i] = bpRollingAverage2
         }

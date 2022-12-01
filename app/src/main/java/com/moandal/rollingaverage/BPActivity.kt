@@ -45,12 +45,12 @@ class BPActivity : AppCompatActivity() {
                 val dialogClickListener = DialogInterface.OnClickListener { dialog, which ->
                     when (which) {
                         DialogInterface.BUTTON_POSITIVE -> {
-                            BPRad.bpRollingAverage1 = 0.0
-                            BPRad.bpRollingAverage2 = 0.0
+                            BPRad.bpRollingAverage1 = 0
+                            BPRad.bpRollingAverage2 = 0
                             Arrays.fill(BPRad.bpReadings1, 0)
                             Arrays.fill(BPRad.bpReadings2, 0)
-                            Arrays.fill(BPRad.bpRollingAvs1, 0.0)
-                            Arrays.fill(BPRad.bpRollingAvs2, 0.0)
+                            Arrays.fill(BPRad.bpRollingAvs1, 0)
+                            Arrays.fill(BPRad.bpRollingAvs2, 0)
                             Arrays.fill(BPRad.bpReadDates, Date())
                             bpDisplayData()
                         }
@@ -147,8 +147,8 @@ class BPActivity : AppCompatActivity() {
         val stringBP2 = editBP2.text.toString()
         val inputValueBP1 = Integer.valueOf(stringBP1)
         val inputValueBP2 = Integer.valueOf(stringBP2)
-        BPRad.bpRollingAverage1 = 0.0
-        BPRad.bpRollingAverage2 = 0.0
+        BPRad.bpRollingAverage1 = 0
+        BPRad.bpRollingAverage2 = 0
         var init = true
         for (i in 0 until Rad.arraySize) {
             if ((compareValues(BPRad.bpReadings1[i], 0) != 0) || (compareValues(BPRad.bpReadings2[i], 0) != 0)) {
@@ -158,11 +158,11 @@ class BPActivity : AppCompatActivity() {
         if (init) {
             Arrays.fill(BPRad.bpReadings1, inputValueBP1)
             Arrays.fill(BPRad.bpReadings2, inputValueBP2)
-            Arrays.fill(BPRad.bpRollingAvs1, inputValueBP1.toDouble())
-            Arrays.fill(BPRad.bpRollingAvs2, inputValueBP2.toDouble())
+            Arrays.fill(BPRad.bpRollingAvs1, inputValueBP1)
+            Arrays.fill(BPRad.bpRollingAvs2, inputValueBP2)
             Arrays.fill(BPRad.bpReadDates, Date())
-            BPRad.bpRollingAverage1 = inputValueBP1.toDouble()
-            BPRad.bpRollingAverage2 = inputValueBP2.toDouble()
+            BPRad.bpRollingAverage1 = inputValueBP1
+            BPRad.bpRollingAverage2 = inputValueBP2
         } else {
             for (i in Rad.arraySize - 1 downTo 1) {
                 BPRad.bpReadings1[i] = BPRad.bpReadings1[i - 1]
