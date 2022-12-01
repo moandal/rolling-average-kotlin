@@ -20,7 +20,6 @@ object Rad {
     var readings = DoubleArray(arraySize)
     var rollingAvs = DoubleArray(arraySize)
     var readDates = arrayOfNulls<Date>(arraySize)
-    var dataType = "Regular" // "Regular" or "Blood Pressure"
 
     fun calcAvs() {
         val multiplier = 10.0.pow(decimalPlaces.toDouble())
@@ -41,7 +40,6 @@ object Rad {
         rollingNumber = preferences.getString("rolling_number", "7")!!.toInt()
         decimalPlaces = preferences.getString("decimal_places", "2")!!.toInt()
         numberToDisplay = preferences.getString("number_to_display", "7")!!.toInt()
-        dataType = preferences.getString("data_type", "Regular")!!
         val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         for (i in 0 until arraySize) {
             readings[i] = java.lang.Double.valueOf(sp.getString("Weight$i", "0")!!)

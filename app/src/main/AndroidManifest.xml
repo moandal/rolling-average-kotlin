@@ -26,6 +26,14 @@
                 android:value="com.moandal.rollingaverage.MainActivity" />
         </activity>
         <activity
+            android:name=".BPSettingsActivity"
+            android:label="Blood Pressure Settings"
+            android:parentActivityName=".BPActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moandal.rollingaverage.BPActivity" />
+        </activity>
+        <activity
             android:name=".EditActivity"
             android:label="@string/title_activity_edit"
             android:parentActivityName=".MainActivity">

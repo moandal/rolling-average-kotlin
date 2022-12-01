@@ -6,8 +6,10 @@ import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.moandal.rollingaverage.Rad.numberToDisplay
+import com.moandal.rollingaverage.Rad.rollingNumber
 
-class SettingsActivity : AppCompatActivity() {
+class BPSettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
@@ -23,15 +25,13 @@ class SettingsActivity : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            setPreferencesFromResource(R.xml.root_preference, rootKey)
-            val rollingNumber =
-                preferenceManager.findPreference<EditTextPreference>("rolling_number")
-            val numberToDisplay =
-                preferenceManager.findPreference<EditTextPreference>("number_to_display")
-            val decimalPlaces =
-                preferenceManager.findPreference<EditTextPreference>("decimal_places")
+            setPreferencesFromResource(R.xml.bp_preference, rootKey)
+            val bpRollingNumber =
+                preferenceManager.findPreference<EditTextPreference>("bp_rolling_number")
+            val bpNumberToDisplay =
+                preferenceManager.findPreference<EditTextPreference>("bp_number_to_display")
 
-            rollingNumber!!.onPreferenceChangeListener =
+            bpRollingNumber!!.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 2 || `val` > 100) {
@@ -45,27 +45,13 @@ class SettingsActivity : AppCompatActivity() {
                         true
                     }
                 }
-            numberToDisplay!!.onPreferenceChangeListener =
+            bpNumberToDisplay!!.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     val `val` = newValue.toString().toInt()
                     if (`val` < 1 || `val` > 100) {
                         Rad.showMessage(
                             "Invalid input",
                             "Value must be between 1 and 100",
-                            activity
-                        )
-                        false
-                    } else {
-                        true
-                    }
-                }
-            decimalPlaces!!.onPreferenceChangeListener =
-                Preference.OnPreferenceChangeListener { preference, newValue ->
-                    val `val` = newValue.toString().toInt()
-                    if (`val` < 1 || `val` > 5) {
-                        Rad.showMessage(
-                            "Invalid input",
-                            "Value must be between 1 and 5",
                             activity
                         )
                         false

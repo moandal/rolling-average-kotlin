@@ -5,7 +5,7 @@
     <string name="edit_data">Edit Data</string>
     <string name="load_data">Load Data</string>
     <string name="save_data">Save Data</string>
-    <string name="switch_data">Switch Data Type</string>
+    <string name="switch_data">Switch To Blood Pressure Data</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_edit">Edit Data</string>
     <string name="title_activity_BP">Blood Pressure Data</string>
@@ -27,14 +27,5 @@
 
     <string name="pref_title_bpnumber_to_display">Number of values to display (1–100)</string>
     <string name="pref_default_bpnumber_to_display">7</string>
-
-    <string name="pref_title_data_type">Data type</string>
-    <string name="pref_default_data_type">Regular</string>
-
-    <string name="pref_label_data_type_regular">Regular</string>
-    <string name="pref_label_data_type_blood_pressure">Blood Pressure</string>
-
-    <string name="pref_value_data_type_regular">Regular</string>
-    <string name="pref_value_data_type_blood_pressure">Blood Pressure</string>
 
 </resources>

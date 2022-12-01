@@ -5,22 +5,15 @@
     <EditTextPreference
         app:defaultValue="@string/pref_default_rolling_number"
         android:inputType="number"
-        app:key="rolling_number"
+        app:key="bp_rolling_number"
         app:title="@string/pref_title_rolling_number"
         app:useSimpleSummaryProvider="true" />
 
     <EditTextPreference
         app:defaultValue="@string/pref_default_number_to_display"
         android:inputType="number"
-        app:key="number_to_display"
+        app:key="bp_number_to_display"
         app:title="@string/pref_title_number_to_display"
-        app:useSimpleSummaryProvider="true" />
-
-    <EditTextPreference
-        app:defaultValue="@string/pref_default_decimal_places"
-        android:inputType="number"
-        app:key="decimal_places"
-        app:title="@string/pref_title_decimal_places"
         app:useSimpleSummaryProvider="true" />
 
 </PreferenceScreen>

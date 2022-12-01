@@ -64,14 +64,8 @@ class BPActivity : AppCompatActivity() {
                 return true
             }
             R.id.menu_bp_settings -> {
-                //val intentSettings = Intent(this, BPSettingsActivity::class.java)
-                //startActivity(intentSettings)
-                Rad.showMessage(
-                    "Not yet implemented",
-                    "Not yet implemented",
-                    this
-                )
-
+                val intentSettings = Intent(this, BPSettingsActivity::class.java)
+                startActivity(intentSettings)
                 return true
             }
             R.id.menu_bp_edit_data -> {
