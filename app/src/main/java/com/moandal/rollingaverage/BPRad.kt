@@ -6,7 +6,6 @@ import com.moandal.rollingaverage.Rad.arraySize
 import com.moandal.rollingaverage.Rad.convertStringToDate
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.roundToInt
 
 object BPRad {
     var bpRollingAverage1 = 0
@@ -37,8 +36,8 @@ object BPRad {
 
     fun bpLoadData(context: Context) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        bpRollingNumber = preferences.getString("BProlling_number", "7")!!.toInt()
-        bpNumberToDisplay = preferences.getString("BPnumber_to_display", "7")!!.toInt()
+        bpRollingNumber = preferences.getString("bp_rolling_number", "7")!!.toInt()
+        bpNumberToDisplay = preferences.getString("bp_number_to_display", "7")!!.toInt()
         val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         for (i in 0 until arraySize) {
             bpReadings1[i] = Integer.valueOf(sp.getString("BP1$i", "0")!!)
