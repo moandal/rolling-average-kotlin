@@ -3,7 +3,6 @@ package com.moandal.rollingaverage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.preference.EditTextPreference
-import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 

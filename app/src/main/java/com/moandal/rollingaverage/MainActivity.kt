@@ -32,7 +32,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 //Todo Keep track of more than one average
-//Todo Average blood pressure
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -3,11 +3,8 @@ package com.moandal.rollingaverage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.preference.EditTextPreference
-import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.moandal.rollingaverage.Rad.numberToDisplay
-import com.moandal.rollingaverage.Rad.rollingNumber
 
 class BPSettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
