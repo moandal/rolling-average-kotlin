@@ -36,6 +36,7 @@
         <activity
             android:name=".EditActivity"
             android:label="@string/title_activity_edit"
+            android:configChanges="orientation|screenSize|screenLayout"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -48,6 +49,7 @@
         <activity
             android:name=".EditBPActivity"
             android:label="@string/title_activity_BPedit"
+            android:configChanges="orientation|screenSize|screenLayout"
             android:parentActivityName=".BPActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
