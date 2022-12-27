@@ -9,12 +9,50 @@
     android:paddingTop="16dp"
     tools:context="com.moandal.rollingaverage.EditBPActivity">
 
+    <LinearLayout
+        android:id="@+id/BPlinlayHeadings"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Systolic"
+            android:id="@+id/textbp1title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:id="@+id/textslash"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diastolic"
+            android:id="@+id/textbp2title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textbpdatetitle"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_below="@id/BPlinlayHeadings"
         android:layout_marginTop="20dp"
-        android:id="@+id/bpscrollview3">
+        android:id="@+id/bpscrollview">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -26,14 +64,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/linLaybpreading1" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Systolic"
-                    android:id="@+id/textbp1title"
-                    android:textStyle="bold" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -41,14 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/linLayslash" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="/"
-                    android:id="@+id/textslash"
-                    android:textStyle="bold" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -56,14 +78,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/linLaybpreading2" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Diastolic"
-                    android:id="@+id/textbp2title"
-                    android:textStyle="bold" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -72,14 +86,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:id="@+id/linLaybpdate" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:id="@+id/textbpdatetitle"
-                    android:textStyle="bold" />
-
             </LinearLayout>
 
         </LinearLayout>

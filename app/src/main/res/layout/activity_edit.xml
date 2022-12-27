@@ -52,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/linLayReading" >
-
             </LinearLayout>
 
             <LinearLayout
@@ -61,7 +60,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:id="@+id/linLayDate" >
-
             </LinearLayout>
 
         </LinearLayout>
