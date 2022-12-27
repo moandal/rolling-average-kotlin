@@ -9,10 +9,36 @@
     android:paddingTop="16dp"
     tools:context="com.moandal.rollingaverage.EditActivity">
 
+    <LinearLayout
+        android:id="@+id/linlayHeadings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textEdReadTitle"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Reading"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textEdDtTitle"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_below="@id/linlayHeadings"
         android:layout_marginTop="20dp"
         android:id="@+id/scrollView2">
 
@@ -27,13 +53,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/linLayReading" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reading"
-                    android:id="@+id/textEdReadTitle"
-                    android:textStyle="bold" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -42,13 +61,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:id="@+id/linLayDate" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:id="@+id/textEdHDtTitle"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 
