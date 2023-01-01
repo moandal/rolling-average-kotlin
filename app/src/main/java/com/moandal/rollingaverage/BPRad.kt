@@ -12,6 +12,7 @@ object BPRad {
     var bpRollingAverage2 = 0
     var bpRollingNumber = 0 // number of readings to average over
     var bpNumberToDisplay = 0 // number of readings in history to display
+    var bpDataSetNum = 1 // dataset number (1-5)
     var bpReadings1 = IntArray(arraySize)
     var bpReadings2 = IntArray(arraySize)
     var bpRollingAvs1 = IntArray(arraySize)

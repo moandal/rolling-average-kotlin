@@ -9,11 +9,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.moandal.rollingaverage.Rad.arraySize
+import com.moandal.rollingaverage.Rad.dataSetNum
 import com.moandal.rollingaverage.Rad.numberToDisplay
 import com.moandal.rollingaverage.Rad.readDates
 import com.moandal.rollingaverage.Rad.readings
@@ -37,11 +39,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         Rad.loadData(this)
         displayData()
     }
 
     private fun displayData() {
+        val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
+        val buttonLeft = findViewById<Button>(R.id.buttonLeft)
+        val buttonRight = findViewById<Button>(R.id.buttonRight)
+        textDataSetNum.text = "Dataset " + dataSetNum.toString()
+        if (dataSetNum == 1) {
+            buttonLeft.isEnabled = false
+        }
+        if (dataSetNum == 5) {
+            buttonRight.isEnabled = false
+        }
+
         Rad.calcAvs()
         val df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault())
         var hist1 = readings[0].toString()
@@ -240,6 +254,34 @@ class MainActivity : AppCompatActivity() {
         }
         displayData()
         Rad.saveData(this)
+    }
+
+    fun dataSetLeft(view: View) {
+        val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
+        val buttonLeft = findViewById<Button>(R.id.buttonLeft)
+        val buttonRight = findViewById<Button>(R.id.buttonRight)
+        dataSetNum = dataSetNum - 1
+        textDataSetNum.text = "Dataset " + dataSetNum.toString()
+        if (dataSetNum == 1) {
+            buttonLeft.isEnabled = false
+        }
+        if (dataSetNum < 5) {
+            buttonRight.isEnabled = true
+        }
+    }
+
+    fun dataSetRight(view: View) {
+        val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
+        val buttonLeft = findViewById<Button>(R.id.buttonLeft)
+        val buttonRight = findViewById<Button>(R.id.buttonRight)
+        dataSetNum = dataSetNum + 1
+        textDataSetNum.text = "Dataset " + dataSetNum.toString()
+        if (dataSetNum > 1) {
+            buttonLeft.isEnabled = true
+        }
+        if (dataSetNum == 5) {
+            buttonRight.isEnabled = false
+        }
     }
 
 }
