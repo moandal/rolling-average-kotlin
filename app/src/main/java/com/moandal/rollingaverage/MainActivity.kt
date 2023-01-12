@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.moandal.rollingaverage.Rad.arraySize
 import com.moandal.rollingaverage.Rad.dataSetNum
 import com.moandal.rollingaverage.Rad.numberToDisplay
@@ -39,8 +40,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         Rad.loadData(this)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        dataSetNum = preferences.getString("dataset_num", "1")!!.toInt()
         displayData()
     }
 
@@ -125,6 +127,10 @@ class MainActivity : AppCompatActivity() {
             R.id.edit_data -> {
                 val intentEdit = Intent(this, EditActivity::class.java)
                 startActivity(intentEdit)
+                return true
+            }
+            R.id.edit_name -> {
+                DatasetNameDialog().show(supportFragmentManager, "DatasetNameDialog")
                 return true
             }
             R.id.load_data -> {
@@ -225,6 +231,10 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         Rad.saveData(this)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+        editor.putString("dataset_num", dataSetNum.toString())
+        editor.apply()
     }
 
     // Called when the user clicks the Enter button
@@ -260,6 +270,7 @@ class MainActivity : AppCompatActivity() {
         val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
         val buttonLeft = findViewById<Button>(R.id.buttonLeft)
         val buttonRight = findViewById<Button>(R.id.buttonRight)
+        Rad.saveData(this)
         dataSetNum = dataSetNum - 1
         textDataSetNum.text = "Dataset " + dataSetNum.toString()
         if (dataSetNum == 1) {
@@ -268,12 +279,15 @@ class MainActivity : AppCompatActivity() {
         if (dataSetNum < 5) {
             buttonRight.isEnabled = true
         }
+        Rad.loadData(this)
+        displayData()
     }
 
     fun dataSetRight(view: View) {
         val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
         val buttonLeft = findViewById<Button>(R.id.buttonLeft)
         val buttonRight = findViewById<Button>(R.id.buttonRight)
+        Rad.saveData(this)
         dataSetNum = dataSetNum + 1
         textDataSetNum.text = "Dataset " + dataSetNum.toString()
         if (dataSetNum > 1) {
@@ -282,6 +296,8 @@ class MainActivity : AppCompatActivity() {
         if (dataSetNum == 5) {
             buttonRight.isEnabled = false
         }
+        Rad.loadData(this)
+        displayData()
     }
 
 }

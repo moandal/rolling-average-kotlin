@@ -18,6 +18,7 @@ object Rad {
     private var decimalPlaces = 0 // number of decimal places for rounding of rolling average
     var numberToDisplay = 0 // number of readings in history to display
     var dataSetNum = 1 // dataset number (1-5)
+    var dataSetName = ""
     var readings = DoubleArray(arraySize)
     var rollingAvs = DoubleArray(arraySize)
     var readDates = arrayOfNulls<Date>(arraySize)
@@ -41,8 +42,8 @@ object Rad {
         rollingNumber = preferences.getString("rolling_number", "7")!!.toInt()
         decimalPlaces = preferences.getString("decimal_places", "2")!!.toInt()
         numberToDisplay = preferences.getString("number_to_display", "7")!!.toInt()
-        dataSetNum = preferences.getString("dataset_num", "1")!!.toInt()
-        val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val sp = context.getSharedPreferences("MyPrefs$dataSetNum", Context.MODE_PRIVATE)
+        dataSetName = sp.getString("dataSetName","")!!
         for (i in 0 until arraySize) {
             readings[i] = java.lang.Double.valueOf(sp.getString("Weight$i", "0")!!)
             readDates[i] = convertStringToDate(sp.getString("readDates$i", "0"))
@@ -50,14 +51,10 @@ object Rad {
     }
 
     fun saveData(context: Context) {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        var editor = preferences.edit()
-        editor.putString("dataset_num", dataSetNum.toString())
-        editor.apply()
-
         val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
-        val sp = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        editor = sp.edit()
+        val sp = context.getSharedPreferences("MyPrefs$dataSetNum", Context.MODE_PRIVATE)
+        val editor = sp.edit()
+        editor.putString("dataSetName", dataSetName)
         for (i in 0 until arraySize) {
             editor.putString("Weight$i", readings[i].toString())
             editor.putString("readDates$i", ddmmFormat.format(readDates[i]!!))
