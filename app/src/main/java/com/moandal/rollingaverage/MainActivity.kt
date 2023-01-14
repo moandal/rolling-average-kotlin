@@ -2,6 +2,7 @@ package com.moandal.rollingaverage
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -16,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.moandal.rollingaverage.Rad.arraySize
+import com.moandal.rollingaverage.Rad.dataSetName
 import com.moandal.rollingaverage.Rad.dataSetNum
 import com.moandal.rollingaverage.Rad.numberToDisplay
 import com.moandal.rollingaverage.Rad.readDates
@@ -50,7 +52,13 @@ class MainActivity : AppCompatActivity() {
         val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
         val buttonLeft = findViewById<Button>(R.id.buttonLeft)
         val buttonRight = findViewById<Button>(R.id.buttonRight)
-        textDataSetNum.text = "Dataset " + dataSetNum.toString()
+        if (dataSetName == "") {
+            textDataSetNum.text = "Dataset " + dataSetNum.toString()
+        }
+        else {
+            textDataSetNum.text = dataSetName
+        }
+
         if (dataSetNum == 1) {
             buttonLeft.isEnabled = false
         }
@@ -130,7 +138,20 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.edit_name -> {
-                DatasetNameDialog().show(supportFragmentManager, "DatasetNameDialog")
+                val dialog = Dialog(this)
+                dialog.setCancelable(false)
+                dialog.setContentView(R.layout.dialog_dataset_name)
+
+                val et_datasetname = dialog.findViewById<EditText>(R.id.et_datasetname)
+                et_datasetname.setText(dataSetName)
+
+                val btn_update = dialog.findViewById(R.id.btn_update) as Button
+                btn_update.setOnClickListener {
+                    dataSetName = et_datasetname.text.toString()
+                    dialog.dismiss()
+                }
+
+                dialog.show()
                 return true
             }
             R.id.load_data -> {
