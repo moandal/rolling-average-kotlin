@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Rad.loadData(this)
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         dataSetNum = preferences.getString("dataset_num", "1")!!.toInt()
+        Rad.loadData(this)
         displayData()
     }
 
