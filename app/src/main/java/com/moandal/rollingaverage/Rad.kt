@@ -53,7 +53,7 @@ object Rad {
     fun saveData(context: Context) {
         val ddmmFormat = SimpleDateFormat("dd/MM/yyyy")
         val sp = context.getSharedPreferences("MyPrefs$dataSetNum", Context.MODE_PRIVATE)
-        val editor = sp.edit()
+        var editor = sp.edit()
         editor.putString("dataSetName", dataSetName)
         for (i in 0 until arraySize) {
             editor.putString("Weight$i", readings[i].toString())

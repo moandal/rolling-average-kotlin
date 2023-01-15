@@ -36,7 +36,6 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-//Todo Keep track of more than one average
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -189,7 +188,7 @@ class MainActivity : AppCompatActivity() {
     private val getSaveResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data: Intent? = result.data
-            if (result.resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            if ((result.resultCode == Activity.RESULT_OK) && (data != null) && (data.data != null)) {
                 writeOutData(data.data!!)
             }
         }
@@ -215,7 +214,7 @@ class MainActivity : AppCompatActivity() {
     private val getLoadResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data: Intent? = result.data
-            if (result.resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            if ((result.resultCode == Activity.RESULT_OK) && (data != null) && (data.data != null)) {
                 readInData(data.data!!)
                 displayData()
             }
@@ -256,10 +255,6 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         Rad.saveData(this)
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val editor = preferences.edit()
-        editor.putString("dataset_num", dataSetNum.toString())
-        editor.apply()
     }
 
     // Called when the user clicks the Enter button
@@ -291,13 +286,19 @@ class MainActivity : AppCompatActivity() {
         Rad.saveData(this)
     }
 
+    private fun saveDataSetNum () {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+        editor.putString("dataset_num", dataSetNum.toString())
+        editor.apply()
+    }
+
     fun dataSetLeft(view: View) {
-        val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
         val buttonLeft = findViewById<Button>(R.id.buttonLeft)
         val buttonRight = findViewById<Button>(R.id.buttonRight)
         Rad.saveData(this)
         dataSetNum = dataSetNum - 1
-        textDataSetNum.text = "Dataset " + dataSetNum.toString()
+        saveDataSetNum()
         if (dataSetNum == 1) {
             buttonLeft.isEnabled = false
         }
@@ -309,12 +310,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dataSetRight(view: View) {
-        val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
         val buttonLeft = findViewById<Button>(R.id.buttonLeft)
         val buttonRight = findViewById<Button>(R.id.buttonRight)
         Rad.saveData(this)
         dataSetNum = dataSetNum + 1
-        textDataSetNum.text = "Dataset " + dataSetNum.toString()
+        saveDataSetNum()
         if (dataSetNum > 1) {
             buttonLeft.isEnabled = true
         }
