@@ -129,8 +129,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
-        android:layout_toEndOf="@id/textDataSetNum"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@id/buttonRight"
         android:text="Prev"
         android:textSize="16sp" />
 
@@ -140,8 +140,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
-        android:layout_toEndOf="@id/buttonLeft"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
         android:text="Next"
         android:textSize="16sp" />
 

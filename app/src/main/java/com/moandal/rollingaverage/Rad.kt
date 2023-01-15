@@ -13,11 +13,11 @@ import kotlin.math.roundToInt
 
 object Rad {
     const val arraySize = 100
+    var dataSetNum = 1 // dataset number (1-5)
     var rollingAverage = 0.0
     var rollingNumber = 0 // number of readings to average over
-    private var decimalPlaces = 0 // number of decimal places for rounding of rolling average
+    var decimalPlaces = 0 // number of decimal places for rounding of rolling average
     var numberToDisplay = 0 // number of readings in history to display
-    var dataSetNum = 1 // dataset number (1-5)
     var dataSetName = ""
     var readings = DoubleArray(arraySize)
     var rollingAvs = DoubleArray(arraySize)
