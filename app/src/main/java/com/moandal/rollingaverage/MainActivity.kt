@@ -48,16 +48,20 @@ class MainActivity : AppCompatActivity() {
         displayData()
     }
 
-    private fun displayData() {
+    private fun displayDataSetName() {
         val textDataSetNum = findViewById<TextView>(R.id.textDataSetNum)
-        val buttonLeft = findViewById<Button>(R.id.buttonLeft)
-        val buttonRight = findViewById<Button>(R.id.buttonRight)
         if (dataSetName == "") {
             textDataSetNum.text = "Dataset " + dataSetNum.toString()
         }
         else {
             textDataSetNum.text = dataSetName
         }
+    }
+    private fun displayData() {
+        val buttonLeft = findViewById<Button>(R.id.buttonLeft)
+        val buttonRight = findViewById<Button>(R.id.buttonRight)
+
+        displayDataSetName()
 
         if (dataSetNum == 1) {
             buttonLeft.isEnabled = false
@@ -139,7 +143,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.edit_name -> {
                 val dialog = Dialog(this)
-                dialog.setCancelable(false)
                 dialog.setContentView(R.layout.dialog_dataset_name)
 
                 val et_datasetname = dialog.findViewById<EditText>(R.id.et_datasetname)
@@ -148,6 +151,7 @@ class MainActivity : AppCompatActivity() {
                 val btn_update = dialog.findViewById(R.id.btn_update) as Button
                 btn_update.setOnClickListener {
                     dataSetName = et_datasetname.text.toString()
+                    displayDataSetName()
                     dialog.dismiss()
                 }
 
