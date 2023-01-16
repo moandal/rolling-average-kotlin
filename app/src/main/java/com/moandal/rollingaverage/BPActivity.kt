@@ -145,8 +145,8 @@ class BPActivity : AppCompatActivity() {
         val editBP2 = findViewById<View>(R.id.editBP2) as EditText
         val stringBP1 = editBP1.text.toString()
         val stringBP2 = editBP2.text.toString()
-        val inputValueBP1 = Integer.valueOf(stringBP1)
-        val inputValueBP2 = Integer.valueOf(stringBP2)
+        val inputValueBP1 = stringBP1.toInt()
+        val inputValueBP2 = stringBP2.toInt()
         BPRad.bpRollingAverage1 = 0
         BPRad.bpRollingAverage2 = 0
         var init = true

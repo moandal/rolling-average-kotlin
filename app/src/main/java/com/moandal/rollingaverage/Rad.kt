@@ -45,7 +45,7 @@ object Rad {
         val sp = context.getSharedPreferences("MyPrefs$dataSetNum", Context.MODE_PRIVATE)
         dataSetName = sp.getString("dataSetName","")!!
         for (i in 0 until arraySize) {
-            readings[i] = java.lang.Double.valueOf(sp.getString("Weight$i", "0")!!)
+            readings[i] = sp.getString("Weight$i", "0")!!.toDouble()
             readDates[i] = convertStringToDate(sp.getString("readDates$i", "0"))
         }
     }

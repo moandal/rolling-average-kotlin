@@ -233,7 +233,7 @@ class MainActivity : AppCompatActivity() {
                 val dataItems: List<String> = currentLine.split(",").map { it.trim() }
 
                 try {
-                    readings[i] = java.lang.Double.valueOf(dataItems[0])
+                    readings[i] = dataItems[0].toDouble()
                 } catch (f: NumberFormatException) {
                     Rad.showMessage("Load data", "Data load failed - invalid data", this)
                     return
@@ -261,7 +261,7 @@ class MainActivity : AppCompatActivity() {
     fun showAverage(view: View) {
         val editWeight = findViewById<View>(R.id.editWeight) as EditText
         val message = editWeight.text.toString()
-        val inputValue = java.lang.Double.valueOf(message)
+        val inputValue = message.toDouble()
         rollingAverage = 0.0
         var init = true
         for (i in 0 until arraySize) {

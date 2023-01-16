@@ -80,7 +80,7 @@ class EditActivity : AppCompatActivity() {
         for (i in 0 until numberToDisplay) {
             editText = linLayReading.findViewById(i)
             textValue = editText.text.toString()
-            inputValue = java.lang.Double.valueOf(textValue)
+            inputValue = textValue.toDouble()
             readings[i] = inputValue
             editText = linLayDate.findViewById(i)
             textValue = editText.text.toString()
