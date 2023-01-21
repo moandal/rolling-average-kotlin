@@ -36,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:ems="6"
         android:hint="Enter value"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal|numberSigned" />
 
     <Button
         android:layout_width="wrap_content"

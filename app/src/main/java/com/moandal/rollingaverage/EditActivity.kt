@@ -53,7 +53,7 @@ class EditActivity : AppCompatActivity() {
             textEdRead[i]!!.layoutParams = linLayReadingparams
             textEdRead[i]!!.setText(readings[i].toString())
             textEdRead[i]!!.inputType =
-                InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+                InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL or InputType.TYPE_NUMBER_FLAG_SIGNED
             textEdRead[i]!!.id = i
             linLayReading.addView(textEdRead[i])
             textEdDate[i] = EditText(this)
