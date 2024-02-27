@@ -23,6 +23,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Reading"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -30,6 +31,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Date"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -39,7 +41,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/linlayHeadings"
+        android:layout_above="@id/buttonUpdate"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/scrollView2">
 
         <LinearLayout
@@ -73,6 +77,6 @@
         android:id="@+id/buttonUpdate"
         android:onClick="updateReadings"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
