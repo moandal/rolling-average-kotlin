@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.text.InputType
 import android.view.View
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import com.moandal.rollingaverage.BPRad.bpNumberToDisplay
 import com.moandal.rollingaverage.BPRad.bpReadDates
 import com.moandal.rollingaverage.BPRad.bpReadings1
@@ -26,6 +27,7 @@ class EditBPActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_bpedit)
         setupActionBar()
         BPRad.bpLoadData(this)

@@ -2,6 +2,7 @@ package com.moandal.rollingaverage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -9,6 +10,7 @@ import androidx.preference.PreferenceFragmentCompat
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.settings_activity)
         if (savedInstanceState == null) {
             supportFragmentManager

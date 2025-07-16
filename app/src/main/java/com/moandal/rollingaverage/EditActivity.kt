@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.text.InputType
 import android.view.View
+import androidx.activity.enableEdgeToEdge
 import com.moandal.rollingaverage.Rad.arraySize
 import com.moandal.rollingaverage.Rad.numberToDisplay
 import com.moandal.rollingaverage.Rad.readDates
@@ -21,6 +22,7 @@ class EditActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_edit)
         setupActionBar()
         Rad.loadData(this)

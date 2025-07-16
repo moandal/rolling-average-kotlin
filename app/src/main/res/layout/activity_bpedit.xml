@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
+    android:fitsSystemWindows="true"
     tools:context="com.moandal.rollingaverage.EditBPActivity">
 
     <LinearLayout
         android:id="@+id/BPlinlayHeadings"
         android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
@@ -52,6 +51,7 @@
         android:orientation="vertical"
         android:layout_below="@id/BPlinlayHeadings"
         android:layout_marginTop="20dp"
+        android:paddingLeft="16dp"
         android:id="@+id/bpscrollview">
 
         <LinearLayout
@@ -98,7 +98,7 @@
         android:text="Update"
         android:id="@+id/buttonBPUpdate"
         android:onClick="updateBPReadings"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

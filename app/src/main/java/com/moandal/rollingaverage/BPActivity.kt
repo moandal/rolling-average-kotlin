@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import java.io.*
@@ -23,6 +24,7 @@ class BPActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_bp)
         BPRad.bpLoadData(this)
         bpDisplayData()

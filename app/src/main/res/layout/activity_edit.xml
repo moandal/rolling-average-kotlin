@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
+    android:fitsSystemWindows="true"
     tools:context="com.moandal.rollingaverage.EditActivity">
 
     <LinearLayout
@@ -16,7 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp" >
 
         <TextView
             android:id="@+id/textEdReadTitle"
@@ -48,6 +47,7 @@
         android:layout_below="@id/linlayEditHeadings"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:paddingLeft="16dp"
         android:id="@+id/scrollView2">
 
         <LinearLayout
