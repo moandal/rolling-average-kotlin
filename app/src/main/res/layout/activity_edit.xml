@@ -89,6 +89,7 @@
         android:id="@+id/buttonUpdate"
         android:onClick="updateReadings"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp" />
 
 </RelativeLayout>

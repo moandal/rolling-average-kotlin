@@ -143,7 +143,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
-        android:paddingBottom="16dp"
         android:layout_toStartOf="@id/buttonRight"
         android:text="Prev"
         android:textSize="16sp" />
@@ -155,8 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:paddingBottom="16dp"
-        android:paddingRight="16dp"
+        android:layout_marginRight="16dp"
         android:text="Next"
         android:textSize="16sp" />
 
